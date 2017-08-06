@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      PLAYER_ONE_SYMBOL: "X",
+      PLAYER_TWO_SYMBOL: "Y",
+      currentTurn: "X",
+      board: [
+        "", "", "", "", "", "", "", "", ""
+      ]
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="board">
+        {this.state.board.map((cell) => {
+          return <div className="square">{cell}</div>;
+        })}
       </div>
-    );
+    )
   }
+
 }
 
 export default App;
