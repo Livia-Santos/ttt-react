@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Header from './components/Header'
+import Header from './components/Header';
+import StartButton from './components/StartButton'
 
 import './App.css';
 
@@ -18,7 +19,7 @@ class App extends Component {
     }
   }
 
-  nextPlayer() {
+  nextPlayer = () => {
     if (this.state.currentTurn === this.state.PLAYER_ONE_SYMBOL) {
       return this.state.PLAYER_TWO_SYMBOL
     } else {
@@ -59,12 +60,23 @@ checkForWinner() {
     })
   }
 
+  resetBoard = () => {
+    this.setState ({
+      PLAYER_ONE_SYMBOL: "X",
+      PLAYER_TWO_SYMBOL: "O",
+      currentTurn: "X",
+      board: [
+        "", "", "", "", "", "", "", "", ""
+      ],
+      winner: null,
+    });
+  }
 
   render() {
     return (
       <div className="container">
         <Header />
-        <div className="container">
+        <div className="row center-block">
             {this.state.winner ? <h1 className="bg-success text-center">{`The winner is ${this.nextPlayer()}!`}</h1> : null}
           <div className="board">
             {this.state.board.map((cell, index) => {
@@ -72,6 +84,9 @@ checkForWinner() {
             })}
           </div>
         </div>
+        <StartButton title="Start Again"
+          onClick = { this.resetBoard }
+        />
       </div>
     )
   }
