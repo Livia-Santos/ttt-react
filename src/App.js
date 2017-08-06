@@ -24,11 +24,13 @@ nextPlayer() {
 }
 
 handleClick(index) {
-  this.state.board[index] = this.state.currentTurn
-  this.setState({
-    board: this.state.board,
-    currentTurn: this.nextPlayer()
-  })
+  if(this.state.board[index] === "" ) {
+    this.state.board[index] = this.state.currentTurn
+    this.setState({
+      board: this.state.board,
+      currentTurn: this.nextPlayer()
+    })
+  }
 }
 
   render() {
