@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Header from './components/Header'
+
 import './App.css';
 
 class App extends Component {
@@ -60,9 +62,10 @@ checkForWinner() {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="container">
+        <Header />
         <div className="container">
-            {this.state.winner ? <h1>{`The winner is ${this.nextPlayer()}!`}</h1> : null}
+            {this.state.winner ? <h1 className="bg-success text-center">{`The winner is ${this.nextPlayer()}!`}</h1> : null}
           <div className="board">
             {this.state.board.map((cell, index) => {
               return <div onClick={() => this.handleClick(index)} className="square">{cell}</div>;
