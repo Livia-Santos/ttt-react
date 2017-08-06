@@ -7,7 +7,7 @@ class App extends Component {
     super(props)
     this.state = {
       PLAYER_ONE_SYMBOL: "X",
-      PLAYER_TWO_SYMBOL: "Y",
+      PLAYER_TWO_SYMBOL: "O",
       currentTurn: "X",
       board: [
         "", "", "", "", "", "", "", "", ""
@@ -15,8 +15,20 @@ class App extends Component {
     }
   }
 
+nextPlayer() {
+  if (this.state.currentTurn === this.state.PLAYER_ONE_SYMBOL) {
+    return this.state.PLAYER_TWO_SYMBOL
+  } else {
+    return this.state.PLAYER_ONE_SYMBOL
+  }
+}
+
 handleClick(index) {
-  console.log(index);
+  this.state.board[index] = this.state.currentTurn
+  this.setState({
+    board: this.state.board,
+    currentTurn: this.nextPlayer()
+  })
 }
 
   render() {
